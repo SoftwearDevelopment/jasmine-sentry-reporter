@@ -22,9 +22,8 @@ class JasmineSentryReporter {
   }
 
   _reportToSentry(result, failedExpectation) {
-    const err = new ExpectationError(failedExpectation.message, failedExpectation.stack);
-    const tags = {testCaseName: result.fullName};
-    this.ravenClient.captureException(err, {message: failedExpectation.message, tags});
+    const err = new ExpectationError(result.fullName, failedExpectation.stack);
+    this.ravenClient.captureException(err, {message: failedExpectation.message});
   }
 }
 
